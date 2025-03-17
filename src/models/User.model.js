@@ -17,13 +17,19 @@ const UserSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    dateOfBirth: {
+        type: String,
+    },
     address: {
         type: String,
-        unique: true
     },
     coin: {
         type: Number,
         default: 0
+    },
+    authorized: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 
