@@ -1,13 +1,14 @@
 import User from "../models/User.model.js";
 
 const insertUser = async (req, res) => {
-  const { name, email, password, phone, dateOfBirth, address, coin } = req.body;
+  const { name, email, password, phone, dateOfBirth, country, address, coin } = req.body;
   const user = {
     name,
     email,
     password,
     phone,
     dateOfBirth,
+    country,
     address,
     coin,
   };
