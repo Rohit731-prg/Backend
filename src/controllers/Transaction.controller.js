@@ -1,13 +1,13 @@
 import Transaction from "../models/Transaction.model.js";
 
 const insert = async (req, res) => {
-  const { buyer, transactionID, transactionProof, amout, coin } = req.body;
+  const { buyer, type, transactionProof, amount, coin } = req.body;
 
   const transaction = {
     buyer,
-    transactionID,
+    type,
     transactionProof,
-    amout,
+    amount,
     coin,
   };
 
@@ -35,7 +35,7 @@ const insert = async (req, res) => {
 
 const getAllData = async (req, res) => {
   try {
-    const response = await Transaction.find({ status: false });
+    const response = await Transaction.find();
 
     if (response) {
       return res.send({

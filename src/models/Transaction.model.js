@@ -5,7 +5,7 @@ const TransactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    transactionID: {
+    type: {
         type: String,
         required: true
     },
@@ -13,7 +13,7 @@ const TransactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    amout: {
+    amount: {
         type: Number,
         required: true
     },
