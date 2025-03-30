@@ -62,19 +62,27 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserByName = async (req, res) => {
-  const { name } = req.body;
+const getUserByID = async (req, res) => {
+  const { id } = req.body;
 
   try {
-    const response = await User.find({ name });
-    res.send({
-      success: true,
-      data: response,
-    });
+    const response = await User.findOne({ _id: id });
+    
+    if(response) {
+      res.send({
+          success: true,
+          data: response,
+      })
+    } else {
+      res.send({
+        success: false,
+        error: error,
+      });
+    }
   } catch (error) {
     res.send({
       success: false,
-      data: error,
+      error: error,
     });
   }
 };
@@ -127,5 +135,5 @@ const updateAuthentication = async (req, res) => {
     }
 }
 
-export { insertUser, updateCoin, getUser, getUserByName, login, updateAuthentication };
+export { insertUser, updateCoin, getUser, getUserByID, login, updateAuthentication };
 

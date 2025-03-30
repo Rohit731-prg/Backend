@@ -56,4 +56,32 @@ const getAllData = async (req, res) => {
   }
 };
 
-export { insert, getAllData };
+const updateStatus = async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const response = await Transaction.updateOne(
+      { _id: id },
+      { $set: { status: true } }
+    )
+
+    if (response) {
+      return res.send({
+        status: true,
+        data: response,
+      });
+    } else {
+      return res.send({
+        status: false,
+        data: "response not found",
+      });
+    }
+  } catch (error) {
+    return res.send({
+      status: false,
+      error: error,
+    })
+  }
+};
+
+export { insert, getAllData, updateStatus };
