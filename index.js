@@ -20,8 +20,6 @@ app.use('/users', UserRouter);
 app.use('/transactions', TransactionRouter);
 app.use('/admin', AdminRouter);
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
 mongoose.connect(process.env.Localhosturl).then(() => {
     console.log('DB Connected')
