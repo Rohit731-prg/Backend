@@ -1,7 +1,7 @@
 import Transaction from "../models/Transaction.model.js";
 
 const insert = async (req, res) => {
-  const { buyer, type, transactionProof, amount, coin } = req.body;
+  const { buyer, type, transactionProof, amount, coin, image } = req.body;
 
   const transaction = {
     buyer,
@@ -9,6 +9,7 @@ const insert = async (req, res) => {
     transactionProof,
     amount,
     coin,
+    image
   };
 
   try {

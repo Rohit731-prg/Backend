@@ -1,14 +1,24 @@
 import express from "express";
 import {
-    insert,
-    getAdmin,
-    updateAdmin
-} from '../controllers/admin.controller.js';
+  insert,
+  getAdmin,
+  updateAdmin,
+} from "../controllers/admin.controller.js";
+import multer from "multer";
+import path from "path";
 
 const route = express.Router();
 
-route.post('/insert', insert);
-route.get('/get', getAdmin);
-route.put('/update', updateAdmin);
+const storage = multer.diskStorage({
+  destination: "../../public/admin/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
 
-export default route
+route.post('/insert', upload.single('image'), insert);
+route.get("/get", getAdmin);
+route.put("/update", updateAdmin);
+
+export default route;

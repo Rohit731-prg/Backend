@@ -24,6 +24,10 @@ const TransactionSchema = new mongoose.Schema({
     status: {
         type: Boolean,
         default: false
+    },
+    image: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

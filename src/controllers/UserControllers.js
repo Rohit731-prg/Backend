@@ -1,7 +1,7 @@
 import User from "../models/User.model.js";
 
 const insertUser = async (req, res) => {
-  const { name, email, password, phone, dateOfBirth, country, address, coin } = req.body;
+  const { name, email, password, phone, dateOfBirth, country, address, coin, image } = req.body;
   const user = {
     name,
     email,
@@ -11,6 +11,7 @@ const insertUser = async (req, res) => {
     country,
     address,
     coin,
+    image
   };
 
   try {

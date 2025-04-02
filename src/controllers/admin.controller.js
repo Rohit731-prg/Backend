@@ -2,9 +2,17 @@ import Admin from "../models/admin.model.js";
 
 const insert = async (req, res) => {
     const { name, email, password } = req.body;
-    const data = { name, email, password };
+    if (!req.file) {
+        return res.status(400).send({ success: false, message: "Image file is required" });
+    }
+    const newImage = new Admin({
+        name,
+        email,
+        password,
+        imageUrl: `/admin/${req.file.filename}`,
+      });
     try {
-        const response = await Admin.insertOne(data);
+        const response = await newImage.save();
 
         if (response) {
             return res.send({ success: true, data: response });

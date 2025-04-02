@@ -20,6 +20,7 @@ app.use('/users', UserRouter);
 app.use('/transactions', TransactionRouter);
 app.use('/admin', AdminRouter);
 
+app.use('/admin', express.static('uploads'));
 
 mongoose.connect(process.env.Localhosturl).then(() => {
     console.log('DB Connected')
