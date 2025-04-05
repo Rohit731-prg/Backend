@@ -33,6 +33,14 @@ const UserSchema = new mongoose.Schema({
     authorized: {
         type: Boolean,
         default: false
+    },
+    photo: {
+        type: String,
+        required: true
+    },
+    file: {
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 

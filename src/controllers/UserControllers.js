@@ -1,7 +1,18 @@
 import User from "../models/User.model.js";
 
 const insertUser = async (req, res) => {
-  const { name, email, password, phone, dateOfBirth, country, address, coin, image } = req.body;
+  const {
+    name,
+    email,
+    password,
+    phone,
+    dateOfBirth,
+    country,
+    address,
+    coin,
+    photo,
+    file
+  } = req.body;
   const user = {
     name,
     email,
@@ -11,11 +22,13 @@ const insertUser = async (req, res) => {
     country,
     address,
     coin,
-    image
+    photo,
+    file
   };
 
   try {
     const response = await User.insertOne(user);
+    
     res.send({
       success: true,
       data: response,
@@ -68,12 +81,12 @@ const getUserByID = async (req, res) => {
 
   try {
     const response = await User.findOne({ _id: id });
-    
-    if(response) {
+
+    if (response) {
       res.send({
-          success: true,
-          data: response,
-      })
+        success: true,
+        data: response,
+      });
     } else {
       res.send({
         success: false,
@@ -88,31 +101,28 @@ const getUserByID = async (req, res) => {
   }
 };
 
-
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.json(
-        { success: false, message: "User not found" }
-    )}
+      return res.json({ success: false, message: "User not found" });
+    }
     if (user.password !== password) {
-      return res
-        .json({ success: false, message: "Invalid password" });
+      return res.json({ success: false, message: "Invalid password" });
     }
     if (user.authorized == false) {
-        return res.json({
-            status: false,
-            message: "Unautherised User"
-        })
+      return res.json({
+        status: false,
+        message: "Unautherised User",
+      });
     }
     if (user.email == email && user.password == password) {
-        return res.json({
-            success: true,
-            logIn: "Success",
-            data: user
-        })
+      return res.json({
+        success: true,
+        logIn: "Success",
+        data: user,
+      });
     }
   } catch (error) {
     res.send({ success: false, message: error.message });
@@ -120,21 +130,27 @@ const login = async (req, res) => {
 };
 
 const updateAuthentication = async (req, res) => {
-    const { id } = req.body;
+  const { id } = req.body;
 
-    try {
-        const response = await User.updateOne({_id: id}, {authorized: true});
-        res.send({
-            status: true,
-            data: response
-        })
-    } catch (error) {
-        res.send({
-            status: false,
-            error: error
-        })
-    }
-}
+  try {
+    const response = await User.updateOne({ _id: id }, { authorized: true });
+    res.send({
+      status: true,
+      data: response,
+    });
+  } catch (error) {
+    res.send({
+      status: false,
+      error: error,
+    });
+  }
+};
 
-export { insertUser, updateCoin, getUser, getUserByID, login, updateAuthentication };
-
+export {
+  insertUser,
+  updateCoin,
+  getUser,
+  getUserByID,
+  login,
+  updateAuthentication,
+};

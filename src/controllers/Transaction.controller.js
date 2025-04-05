@@ -9,23 +9,16 @@ const insert = async (req, res) => {
     transactionProof,
     amount,
     coin,
-    image
+    image,
   };
 
   try {
     const response = await Transaction.insertOne(transaction);
 
-    if (response) {
-      return res.send({
-        status: true,
-        data: response,
-      });
-    } else {
-      return res.send({
-        status: false,
-        data: response,
-      });
-    }
+    return res.send({
+      status: true,
+      data: response,
+    });
   } catch (error) {
     return res.send({
       status: false,
@@ -64,7 +57,7 @@ const updateStatus = async (req, res) => {
     const response = await Transaction.updateOne(
       { _id: id },
       { $set: { status: true } }
-    )
+    );
 
     if (response) {
       return res.send({
@@ -81,7 +74,7 @@ const updateStatus = async (req, res) => {
     return res.send({
       status: false,
       error: error,
-    })
+    });
   }
 };
 
