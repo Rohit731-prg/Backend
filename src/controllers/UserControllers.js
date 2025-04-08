@@ -42,24 +42,49 @@ const insertUser = async (req, res) => {
 };
 
 const updateCoin = async (req, res) => {
-  const { id, coin } = req.body;
+  const { id, type, coin } = req.body;
 
   try {
+    console.log(typeof coin)
+
+    let incrementValue = 0;
+
+    if (type === 'buy') {
+      incrementValue = coin;
+    } else if (type === 'sell') {
+      incrementValue = -coin;
+    } else {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid transaction type. Must be 'buy' or 'sell'",
+      });
+    }
+
     const response = await User.updateOne(
       { _id: id },
-      { $inc: { coin: coin } }
+      { $inc: { coin: incrementValue } }
     );
-    res.send({
+
+    if (!response) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.status(200).send({
       success: true,
       data: response,
     });
+
   } catch (error) {
-    res.send({
+    res.status(500).send({
       success: false,
-      data: error,
+      message: error.message,
     });
   }
 };
+
 
 const getUser = async (req, res) => {
   try {
