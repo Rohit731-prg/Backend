@@ -19,7 +19,7 @@ app.use('/users', UserRouter);
 app.use('/transactions', TransactionRouter);
 app.use('/admin', AdminRouter);
 
-mongoose.connect(process.env.saikat).then(() => {
+mongoose.connect(process.env.Localhosturl).then(() => {
     console.log('DB Connected')
     app.listen(process.env.port, () => {
         console.log(`Server running on port ${process.env.port}`)
