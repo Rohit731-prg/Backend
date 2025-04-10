@@ -218,10 +218,10 @@ const updateAuthentication = async (req, res) => {
 
 const validateKyc = async (req, res) => {
   const { id } = req.params;
-  const { file, fullname, phone, dateOfBirth, country, address, kyc } = req.body;
+  const { file, fullName, phone, dateOfBirth, country, address, kyc } = req.body;
 
   try {
-    const response = await User.updateOne({ _id: id }, { file, fullname, phone, dateOfBirth, country, address, kyc });
+    const response = await User.updateOne({ _id: id }, { file, fullName, phone, dateOfBirth, country, address, kyc });
     res.send({
       status: true,
       data: response
