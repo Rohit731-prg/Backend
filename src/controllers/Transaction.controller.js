@@ -1,6 +1,5 @@
 import Transaction from "../models/Transaction.model.js";
 
-// ✅ INSERT TRANSACTION
 const insert = async (req, res) => {
   const { buyer, type, transactionProof, amount, coin, image } = req.body;
 
@@ -26,7 +25,6 @@ const insert = async (req, res) => {
   }
 };
 
-// ✅ GET ALL TRANSACTIONS
 const getAllData = async (req, res) => {
   try {
     const response = await Transaction.find().populate("buyer");
@@ -50,7 +48,6 @@ const getAllData = async (req, res) => {
   }
 };
 
-// ✅ UPDATE STATUS
 const updateStatus = async (req, res) => {
   const { id } = req.body;
 
