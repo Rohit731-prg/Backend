@@ -77,4 +77,32 @@ const updateStatus = async (req, res) => {
   }
 };
 
-export { insert, getAllData, updateStatus };
+const getTransactionById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    let response = await Transaction.find();
+
+    if (response.length > 0) {
+      response = response.filter((item) => item.buyer._id == id);
+
+      return res.status(200).send({
+        status: true,
+        data: response,
+      });
+    } else {
+      return res.status(404).send({
+        status: false,
+        message: "No transactions found for this buyer",
+      });
+    }
+  } catch (error) {
+    return res.status(500).send({
+      status: false,
+      message: error.message,
+    });
+  }
+};
+
+
+export { insert, getAllData, updateStatus, getTransactionById };
