@@ -1,4 +1,3 @@
-import { console } from "inspector";
 import Admin from "../models/admin.model.js";
 
 const insert = async (req, res) => {
@@ -6,7 +5,7 @@ const insert = async (req, res) => {
     email1: 'example1@gmail.com',
     email2: 'example2@gmail.com',
     email3: 'example3@gmail.com',
-  }
+  };
 
   const { name, email, password, image } = req.body;
   const admin = {
@@ -16,13 +15,13 @@ const insert = async (req, res) => {
     image,
   };
 
-  if(email !== validEmails.email1 && email !== validEmails.email2 && email !== validEmails.email3) {
+  // Validate if the email is in the list of valid emails
+  if (email !== validEmails.email1 && email !== validEmails.email2 && email !== validEmails.email3) {
     return res.send({ success: false, message: "Email not valid" });
   }
 
   try {
-    const response = await Admin.insertOne(admin);
-
+    const response = await Admin.create(admin);
     return res.send({ success: true, data: response });
   } catch (error) {
     return res.send({ success: false, message: error.message });
