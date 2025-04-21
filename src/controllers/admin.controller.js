@@ -23,8 +23,9 @@ const insert = async (req, res) => {
   try {
     const response = await Admin.create(admin);
     return res.send({ success: true, data: response });
+
   } catch (error) {
-    return res.send({ success: false, message: error.message });
+    return res.send({ success: false, message: error });
   }
 };
 

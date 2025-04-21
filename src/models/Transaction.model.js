@@ -10,10 +10,6 @@ const TransactionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    transactionProof: {
-        type: String,
-        required: true
-    },
     amount: {
         type: Number,
         required: true

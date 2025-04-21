@@ -1,13 +1,12 @@
 import Transaction from "../models/Transaction.model.js";
 
 const insert = async (req, res) => {
-  const { buyer, type, transactionProof, amount, coin, image } = req.body;
+  const { buyer, type, amount, coin, image } = req.body;
 
   try {
     const transaction = await Transaction.create({
       buyer,
       type,
-      transactionProof,
       amount,
       coin,
       image,
@@ -17,6 +16,7 @@ const insert = async (req, res) => {
       status: true,
       data: transaction,
     });
+
   } catch (error) {
     return res.status(500).send({
       status: false,
