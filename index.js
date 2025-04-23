@@ -4,6 +4,7 @@ import CoinRouter from './src/Routes/CoinRoute.js'
 import UserRouter from './src/Routes/UserRoute.js'
 import TransactionRouter from './src/Routes/Transaction.route.js'
 import AdminRouter from './src/Routes/admin.route.js'
+import qrCodeRouter from './src/Routes/qrCode.route.js'
 import dotenv from "dotenv";
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use('/coins', CoinRouter);
 app.use('/users', UserRouter);
 app.use('/transactions', TransactionRouter);
 app.use('/admin', AdminRouter);
+app.use('/qrCode', qrCodeRouter);
 
 mongoose.connect(process.env.saikat).then(() => {
     console.log('DB Connected')

@@ -7,20 +7,20 @@ import {
   getAdminByID,
   getAdminByEmailPassword
 } from "../controllers/admin.controller.js";
-import multer from "multer";
-import path from "path";
+// import multer from "multer";
+// import path from "path";
 
 const route = express.Router();
 
-const storage = multer.diskStorage({
-  destination: "../../public/admin/",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-const upload = multer({ storage });
+// const storage = multer.diskStorage({
+//   destination: "../../public/admin/",
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
+// const upload = multer({ storage });
 
-route.post('/insert', upload.single('image'), insert);
+route.post('/insert', insert);
 route.get("/get", getAdmin);
 route.post('/getAdminByName', getAdminByName);
 route.put("/update", updateAdmin);
