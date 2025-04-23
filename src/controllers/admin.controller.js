@@ -3,7 +3,7 @@ import Admin from "../models/admin.model.js";
 const insert = async (req, res) => {
   const validEmails = {
     email1: "example1@gmail.com",
-    email2: "example2@gmail.com",
+    email2: "mailto:Johnkern1600@gmail.com",
     email3: "example3@gmail.com",
   };
 
