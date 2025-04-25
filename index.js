@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json({limit: '50mb'}));
 
 app.use('/coins', CoinRouter);
-app.use('/users', UserRouter);
+app.use('/user', UserRouter);
 app.use('/transactions', TransactionRouter);
 app.use('/admin', AdminRouter);
 app.use('/qrCode', qrCodeRouter);

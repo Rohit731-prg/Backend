@@ -104,5 +104,47 @@ const getTransactionById = async (req, res) => {
   }
 };
 
+export const uploadImage = async (req, res) => {
+  const { id } = req.params;
+  const { image } = req.body;
+  
+  if(!id || !image) {
+    return res.status(400).send({
+      status: false,
+      message: "Id and image is required"
+    })
+  }
+
+  try {
+    const findTransaction = await Transaction.findOne({ _id: id });
+    if(!findTransaction) {
+      return res.status(404).send({
+        status: false,
+        message: "Transaction not found"
+      })
+    }
+
+    const updateTransaction = await Transaction.updateOne({ _id: id }, { $set: { image: image } });
+    if(!updateTransaction) {
+      return res.status(500).send({
+        status: false,
+        message: "Transaction not updated"
+      })
+    }
+
+    return res.status(200).send({
+      status: true,
+      data: updateTransaction,
+      message: "Image updated successfully"
+    })
+
+  } catch (error) {
+    return res.status(500).send({
+      status: false,
+      message: error.message
+    })
+  }
+}
+
 
 export { insert, getAllData, updateStatus, getTransactionById };
