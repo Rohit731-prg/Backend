@@ -4,7 +4,7 @@ import { getMessagesByUser, insert, uploadMessage } from "../controllers/message
 const router = express.Router();
 
 router.post('/insert', insert);
-router.post('/getMessagesByUser', getMessagesByUser);
-router.put('/update', uploadMessage);
+router.post('/getMessagesByUser/:id', getMessagesByUser);
+router.put('/update/:id', uploadMessage);
 
 export default router
