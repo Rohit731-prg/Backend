@@ -27,18 +27,18 @@ const insert = async (req, res) => {
 const getAllData = async (req, res) => {
   try {
     const response = await Transaction.find().populate("buyer");
-
-    if (response && response.length > 0) {
+    if(!response) {
       return res.status(200).send({
-        status: true,
-        data: response,
-      });
-    } else {
-      return res.status(404).send({
         status: false,
-        message: "No transactions found",
+        message: "No transaction found",
       });
     }
+
+    return res.status(200).send({
+      status: true,
+      data: response,
+      message: "Transaction found successfully",
+    });
   } catch (error) {
     return res.status(500).send({
       status: false,
