@@ -27,7 +27,7 @@ const insert = async (req, res) => {
 const getAllData = async (req, res) => {
   try {
     const response = await Transaction.find().populate("buyer");
-    if(!response) {
+    if (!response) {
       return res.status(200).send({
         status: false,
         message: "No transaction found",
@@ -130,8 +130,7 @@ const getTransactionById = async (req, res) => {
     });
   }
 };
-
-export const uploadImage = async (req, res) => {
+const uploadImage = async (req, res) => {
   const { id } = req.params;
   const { image } = req.body;
 
@@ -175,4 +174,4 @@ export const uploadImage = async (req, res) => {
   }
 };
 
-export { insert, getAllData, updateStatus, getTransactionById };
+export { insert, getAllData, updateStatus, getTransactionById, uploadImage };

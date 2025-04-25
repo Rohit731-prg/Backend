@@ -80,7 +80,7 @@ const updateCoin = async (req, res) => {
       { _id: id },
       {
         $inc: {
-          coin: type === "buy" ? numberOfCoin : -numberOfCoin,
+          coin: numberOfCoin,
         },
       }
     );
