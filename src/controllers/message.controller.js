@@ -1,5 +1,5 @@
 import message from "../models/message.model.js";
-import User from "../models/user.model.js";
+import User from "../models/User.model.js";
 
 export const insert = async (req, res) => {
     const { id } = req.params;
@@ -41,13 +41,13 @@ export const getMessagesByUser = async (req, res) => {
 
 export const uploadMessage = async (req, res) => {
     const { id } = req.params;
-    const { message, owner } = req.body;
+    const { content, owner } = req.body;
 
-    if(!id || !message || !owner) {
+    if(!id || !content || !owner) {
         return res.status(400).send({ status: false, message: "Id and message and owner is required" });
     }
 
-    if(owner == "user" || owner == "admin") {
+    if(owner !== "user" && owner !== "admin") {
         return res.status(400).send({ status: false, message: "Owner should be user or admin" });
     }
 
@@ -60,7 +60,7 @@ export const uploadMessage = async (req, res) => {
         const response = await message.updateOne({ _id: id }, { 
             $push: {
                 messages: {
-                    message: message,
+                    message: content,
                     owner: owner,
                     date: new Date()
                 }
