@@ -175,3 +175,4 @@ const uploadImage = async (req, res) => {
 };
 
 export { insert, getAllData, updateStatus, getTransactionById, uploadImage };
+
