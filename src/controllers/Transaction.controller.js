@@ -144,7 +144,7 @@ const uploadImage = async (req, res) => {
   try {
     const findTransaction = await Transaction.findOne({ _id: id });
     if (!findTransaction) {
-      return res.status(404).send({
+      return res.status(200).send({
         status: false,
         message: "Transaction not found",
       });
