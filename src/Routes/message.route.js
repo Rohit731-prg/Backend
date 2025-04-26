@@ -3,7 +3,7 @@ import { getMessagesByUser, insert, uploadMessage } from "../controllers/message
 
 const router = express.Router();
 
-router.post('/insert', insert);
+router.post('/insert/:id', insert);
 router.post('/getMessagesByUser/:id', getMessagesByUser);
 router.put('/update/:id', uploadMessage);
 

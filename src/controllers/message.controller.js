@@ -3,6 +3,7 @@ import User from "../models/User.model.js";
 
 export const insert = async (req, res) => {
     const { id } = req.params;
+    console.log(id)
     if(!id) {
         return res.status(400).send({ status: false, message: "Id is required" });
     }
